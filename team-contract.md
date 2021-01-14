@@ -1,6 +1,6 @@
 ﻿**Team 8 Contract**
-To keep each other accountable and on task throughout the semester long project.
 
+**Purpose:** To keep each other accountable and on task throughout the semester long project.
 
 **Group Work Expectations:** Group work should be split as evenly as possible between three members, with members making sure to communicate progress regularly. Programming or other related standards adopted by the group should be followed. Assigned group work tasks should be completed in a timely manner.
 
