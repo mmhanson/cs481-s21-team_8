@@ -1,32 +1,26 @@
-# Meeting 1
+# Meeting 2
 
 - Attendance: Everyone present
 
-We initially came up with a few ideas last Thursday (1/14/21) when we initially met in groups. We shrunk our potential project to 3 ideas. 
+This week we have officially decided on a project. We will develop a discord bot that can act as a
+media player, retrieving songs from spotify. This bot will interact with a separate API known as the
+audioDB which contains important discography of songs that we previously requested from the spotify API.
 
-The first idea we came up with was using a location or a map api to find 
-the best or unpopular hiking trails in the city of Idaho. We found that 
-the city of Idaho has it's own api that does list popular trails in the 
-foothills and we considered using that.
+We broke up how we wanted to implement this in five steps. We first want to hit the spotify endpoint
+for the song a user requests. If that song is found, then we want to proceed and retrieve the infomation
+from the AudioDB. We know that the AudioDB is much more expansive than spotify's current library.
+If we tried to retrieve information on valid AudioDB responses first, there is a chance we still may
+not find the track on spotify. But we figured there is much less margin of error the other way around.
+Then we will store the like/dislike ratio of the given track's music video and average that out to what
+we refer to as the "taste ratio" for each user. Then, finally we play that song using discord's built in
+audio player.
 
-The second idea we came up with was to create an app that shows 
-availability in parking garages in the Boise area. Our idea was to 
-implement a web scraper that goes onto the parkboi website to check 
-the availability of parking garages. Due to requiring a ticket to enter, 
-which the garage database keeps track of, we thought it might be a more 
-reliable app to build compared to a Boise State University parking
-availability tracker due to that info being less reliable. 
-
-The third and final idea that we are ultimately leaning towards is a 
-discord bot that streams spotify songs based on user request. We will 
-connect this bot to a separate api other than the spotify one. 
-TheAudioDB endpoint allows us to get the music video view count as well 
-as the like/dislike ratio on the given track's music video. Using this 
-the bot will rank the members of the chat by musical taste. The more 
-dislike average from the overall songs a user requests, the worse his 
-taste will be.
-
+We started to think of additional features we could implement when we finish but have extra time. Some
+ideas we came up with include push notifications on your phone from the discord bot teasing you
+lightheartedly to come back to the channel and increase your music taste scores.
 
 My task for this week:
-- Research how to create a discord bot
-- Research how to set up dev environment and api authorization for spotify and TheAudioDB
+
+- Research how to integrate the media player in the Discord application
+- Research how we register for an authorization token for Discord, Spotify, and AudioDB API's
+- Start thinking of good ways to separate this project into different stories that a team can tackle together.
