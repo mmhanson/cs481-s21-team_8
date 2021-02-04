@@ -1,4 +1,0 @@
-To run on Python 3.8.2:
-
-sudo python3 -m pip install discord.py
-python3 main.py
