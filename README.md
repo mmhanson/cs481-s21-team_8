@@ -14,6 +14,13 @@ The overall process will be like this: a user searches a song on Spotify with ou
 
 Some other features we discussed about implementing is having our Discord bot give us push notifications through the Discord app when we haven’t visited the channel it is registered on in a while. If we have a relatively high “musical taste” according to the like/dislike ratio, maybe the bot would make fun of us for enjoying popular music so much. If we have a low musical taste ranking, then the bot would try to encourage us to revisit the channel to play some more songs to increase our ranking.
 
+### Feeback from shane
+
+Nice idea! Just like we talked about today I think a discord bot would be really cool and defiantly big enough for this class. I personally would write it in typescript and leverage discord.js however if python makes more sense the got with that! Sorry for not getting feedback to you sooner, I have been slammed and got a little behind in grading.
+
+I am excited to see the finished project! 
+
+
 ### Tech lab
 
 TODO:[Tech Lab](https://shanep.github.io/capstone/labs/tech/)
