@@ -23,7 +23,17 @@ I am excited to see the finished project!
 
 ### Tech lab
 
-TODO:[Tech Lab](https://shanep.github.io/capstone/labs/tech/)
+Discord.py:
+
+Discord.py is the standard framework for developing discord bots for writing it in the python programming language. Some of its important features to utilize includes modern pythonic API requests using the async/await syntax, being able to implement the entirety of the Discord API, easy to use object oriented design, and speed and memory optimization. To use this, we simply install the package using pip install discord.py and the functionalities that this framework provides is ready to use. 
+
+Akairo:
+
+Akairo is a Discord bot framework based around Discord.js, which is in turn a node.js module used to interact with Discord. Akairo is installed via npm and features a number of different utilities; in general, it appears to be a very comprehensive bot framework. Notable among its features are the ability to interface easily with databases (including sqlite), which would be useful in our case for the storage of song information. Also notable is the full suite of features related to implementing commands (which would be useful for the number of different commands and command line options we’ll have to support) including one that allows commands to be placed on a cooldown - this would be useful, for example, in the case of the taste analyzer, which we wouldn’t want people to be able to spam the chat with.
+
+Discord-Hero:
+
+Discord-Hero is a Discord bot framework intended to help create bots quicker and easier. It includes all the basic functions found in discord.py that you need to start making your bot, and also includes more advanced features using other discord bot frameworks, such as FastAPI and Django. This framework includes all the core commands for creating a bot, as well as the ability to create extensions, cogs, and listeners, all features found in discord.py, but it changes all the command and class names. It also includes some more advanced features like controllers and models, which comes from the Django framework. Overall, it’d be better to stick to discord.py over this framework due to the lack of documentation discord-hero has, and the changing of command and class names could lead to confusion when trying to debug.
 
 ## Planning Lab
 
