@@ -1,12 +1,18 @@
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+bot_token = os.getenv("TECHLABTOKEN")
+channel_id = os.getenv("CHANNELID")
+print(bot_token)
+print(channel_id)
 
 bot = commands.Bot(command_prefix="!", description="Test Bot for Tech Lab", case_insensitive=True)
-channel_id = "806993458623152248"
-bot_token = "ODA2OTk0NTcyMjI3NzcyNDQ2.YBxiQw.upryfy9AY0ZrUufcdkgGXIbCxM8"
 tmp = "some change"
-
 
 @bot.event
 async def on_ready():
