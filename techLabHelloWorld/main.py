@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-bot_token = os.getenv("TECHLABTOKEN")
-channel_id = os.getenv("CHANNELID")
+bot_token = os.getenv("TECH_LAB_TOKEN")
+channel_id = os.getenv("CHANNEL_ID")
 print(bot_token)
 print(channel_id)
 
