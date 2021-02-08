@@ -1,16 +1,18 @@
 # Meeting 3
 
-- Attendance: John was absent AGAIN!
+- Attendance: All present
 
-Today the team and I compared our progress on the paper. Bob had some issues getting QEMU all
-configured properly to run his OS so we all chipped in and helped him out. Everyone is making
-really good progress! We are all feeling good about getting done, except for Johns part of course.
+This week in our group we start by all watching a simple Discord bot tutorial video, basically to get our "Hello World"
+working for this weeks task. After we all watched it, Sean went back and watched it again, following along, and after some
+trial and error with our bot's token resetting when he pushed the code to github, we had our "Hello World" functional.
 
-UPDATE: John sent an email 3 hours after the meeting was complete and said that he was cooking
-peeled donuts for breakfast and one of them exploded so he was in the hospital all morning and
-that is why he missed the meeting.
+While Sean was doing that, me and Forrest were looking for any possible frameworks we could use. We both found one
+that we could possibly use, which we then researched more in order to write about them in the README. The one i researched
+was called discord-hero, and while it had some nice features, for what we need to do, it'd be more beneficial to stick
+to the normal discord.py we found, especially since we're all inexperienced with Discord for the most part.
 
 My task for this week:
 
-- Start working on researching scheduling in Linux
-- Merge in all my work on the process section from previous week
+- Start doing more research into discord.py
+- Make sure I can run the "Hello World" from my machine as well
+- Look into the Spotify API, and how it can work with discord bots
