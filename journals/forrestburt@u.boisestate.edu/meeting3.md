@@ -1,16 +1,13 @@
 # Meeting 3
 
-- Attendance: John was absent AGAIN!
+- Attendance: All members were in attendance
 
-Today the team and I compared our progress on the paper. Bob had some issues getting QEMU all
-configured properly to run his OS so we all chipped in and helped him out. Everyone is making
-really good progress! We are all feeling good about getting done, except for Johns part of course.
+During today's meeting we took care of the tech lab. We started off by watching a short tutorial on how to create a basic "hello world" Discord bot that could send simple messages to our team Discord. Sean wrote up the code from the tutorial and after some tests, got it to work perfectly by sending messages to a seperate channel we created for bot testing. This was awesome to see and was really a cool first step to the project. After this, we focused in on the README part of the lab, deciding to write about three different Discord frameworks (which Ben and I had been researching) - Akario, discord-hero, and Discord.py.
 
-UPDATE: John sent an email 3 hours after the meeting was complete and said that he was cooking
-peeled donuts for breakfast and one of them exploded so he was in the hospital all morning and
-that is why he missed the meeting.
+We also met back the following day on Friday to finalize a few things on the README and get that uploaded.
 
-My task for this week:
+My tasks for this week:
 
-- Start working on researching scheduling in Linux
-- Merge in all my work on the process section from previous week
+- Run the Discord bot to make sure it works correctly on my machine
+- Continue to research Discord.py so I have a better understanding of how all the components fit together
+- Start to think about what a build system for the project would look like
