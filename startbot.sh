@@ -7,5 +7,4 @@ source_env() {
 source_env
 
 #change this later to not do the example test but the tests for our actual bot
-
-python3 ./tests/exampleTest/example_tester.py $TECH_LAB_BOT_ID $TESTER_BOT_TOKEN -c $CHANNEL_ID -r all
+python3 ./tests/exampleTest/example_target.py $TECH_LAB_TOKEN
