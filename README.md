@@ -42,3 +42,11 @@ TODO:[Planning Lab](https://shanep.github.io/capstone/labs/planning/)
 - [Jane's Plan](planning/janedoe@u.boisestate.edu.md)
 - John's Plan
 - Bob's Plan
+
+## Running the bot 
+
+# change this later to run the build script instead
+In one terminal, run the ./startbot.sh script
+
+## To run tests 
+In a separate terminal run the ./test.sh script 
