@@ -50,3 +50,10 @@ In one terminal, run the ./startbot.sh script
 
 ## To run tests 
 In a separate terminal run the ./test.sh script 
+(
+This will not work with the current version of distest. Author of repo has been notified of bug.
+To run tests currently as of 2/18/2019, go into validate_discord_token.py and change line 19 to include the letter O
+'''
+if not re.match(r"[MNO][A-Za-z\d]{23}\.[\w-]{6}\.[\w-]{27}", token_value):
+'''
+)
