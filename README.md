@@ -45,7 +45,7 @@ TODO:[Planning Lab](https://shanep.github.io/capstone/labs/planning/)
 
 ## Running the bot 
 
-# change this later to run the build script instead
+###### change this later to run the build script instead
 In one terminal, run the ./startbot.sh script
 
 ## To run tests 
