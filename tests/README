@@ -1,0 +1,9 @@
+To run the tests in Python 3.8.2
+
+AS OF 2/16/21 YOU WILL NEED TO GO INTO validate_discord_token.py AND EDIT THE REGEX PARSER TO INCLUDE THE PREFIX 'O'
+
+Open 2 terminals
+Run ./startbot.sh in one terminals
+
+In the other, run ./test.sh
+
