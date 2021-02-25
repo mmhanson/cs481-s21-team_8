@@ -1,6 +1,6 @@
 # CS481 - Senior Design Project
 
-TODO:[CI Lab](https://shanep.github.io/capstone/labs/ci/)
+[![Bot Builder/Tester](https://github.com/shanep-capstone/cs481-s21-team_8/actions/workflows/bot-testing.yml/badge.svg?branch=master)](https://github.com/shanep-capstone/cs481-s21-team_8/actions/workflows/bot-testing.yml)
 
 ## Project Epic
 
