@@ -8,7 +8,7 @@ import asyncio
 import sys
 from distest import TestCollector
 from distest import run_dtest_bot
-from discord import Embed,  # Member, Status
+from discord import Embed  #, Member, Status
 from distest import TestInterface
 
 # The tests themselves

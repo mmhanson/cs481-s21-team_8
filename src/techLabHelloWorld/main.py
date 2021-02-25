@@ -1,5 +1,5 @@
-# import discord
-# from discord.ext.commands import Bot
+import discord
+from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
