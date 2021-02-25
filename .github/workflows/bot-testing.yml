@@ -58,9 +58,4 @@ jobs:
       run: |
         ./startbot.sh
         ./test.sh
-      env:
-          TECH_LAB_TOKEN: ODA2OTk0NTcyMjI3NzcyNDQ2.YBxiQw.LKLtMv85ymeyzwbb61AxdJ3TTUE
-          TECH_LAB_BOT_ID: 806994572227772446
-          CHANNEL_ID: 806993458623152248
-          TESTER_BOT_TOKEN: ODExMzc1MzUwNzk3Njk3MDU0.YCxSLg.J6spLjIkZvXf3WbVgBUAakkCfFk
 
