@@ -8,7 +8,7 @@ import asyncio
 import sys
 from distest import TestCollector
 from distest import run_dtest_bot
-from discord import Embed, Member, Status
+from discord import Embed,  # Member, Status
 from distest import TestInterface
 
 # The tests themselves
@@ -43,7 +43,7 @@ async def test_reply_equals(interface):
 @test_collector()
 async def test_channel_create(interface):
     await interface.send_message("Create a tc called yeet")
-    created_channel = await interface.assert_guild_channel_created("yeet")
+    await interface.assert_guild_channel_created("yeet")
 
 
 # @test_collector
@@ -92,11 +92,11 @@ async def test_embed_matches(interface):
             url="http://www.example.com",
             color=0x00FFCC,
         )
-            .set_author(name="Author")
-            .set_thumbnail(
+        .set_author(name="Author")
+        .set_thumbnail(
             url="https://upload.wikimedia.org/wikipedia/commons/4/40/Test_Example_%28cropped%29.jpg"
         )
-            .set_image(
+        .set_image(
             url="https://upload.wikimedia.org/wikipedia/commons/4/40/Test_Example_%28cropped%29.jpg"
         )
     )
@@ -124,6 +124,10 @@ async def test_reply_on_edit(interface):
     await asyncio.sleep(1)
     await interface.edit_message(message, "Say 'Yeah, that is cool!'")
     await interface.assert_message_contains(message, "Yeah, that is cool!")
+
+@test_collector()
+async def test_reply_on_log_out(interface):
+    await interface.assert_reply_contains("log out", "logging off...")
 
 # Actually run the bot
 

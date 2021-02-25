@@ -94,6 +94,12 @@ async def on_message(message):
         await text_channel.delete()
     if sent is not None:
         print("Message sent: {}".format(sent.clean_content))
+    
+    if message.content == "log out":
+        await asyncio.sleep(1)
+        sent = await message.channel.send("logging off...")
+        client.close()
+        exit()
 
 
 @client.event
