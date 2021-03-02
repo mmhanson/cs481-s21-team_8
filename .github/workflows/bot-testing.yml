@@ -6,6 +6,8 @@ name: Bot Builder/Tester
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+    - 'journals/**'
   pull_request:
     branches: [ master ]
 
