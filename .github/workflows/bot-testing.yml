@@ -55,13 +55,16 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_DEBUG: false
+        envkey_CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        envkey_TECH_LAB_BOT_ID: ${{ secrets.TECH_LAB_BOT_ID }}
+        envkey_TECH_LAB_TOKEN: ${{ secrets.TECH_LAB_TOKEN }}
+        envkey_TESTER_BOT_TOKEN: ${{ secrets.TESTER_BOT_TOKEN }}
+        file_name: .env
     - name: Test with distest
-      env: 
-        CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-        TECH_LAB_BOT_ID: ${{ secrets.TECH_LAB_BOT_ID }}
-        TECH_LAB_TOKEN: ${{ secrets.TECH_LAB_TOKEN }}
-        TESTER_BOT_TOKEN: ${{ secrets.TESTER_BOT_TOKEN }}
       run: |
         ./startbot.sh
         ./test.sh
