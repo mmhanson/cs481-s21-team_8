@@ -57,6 +57,11 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
     - name: Test with distest
+      env: 
+        CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        TECH_LAB_BOT_ID: ${{ secrets.TECH_LAB_BOT_ID }}
+        TECH_LAB_TOKEN: ${{ secrets.TECH_LAB_TOKEN }}
+        TESTER_BOT_TOKEN: ${{ secrets.TESTER_BOT_TOKEN }}
       run: |
         ./startbot.sh
         ./test.sh
