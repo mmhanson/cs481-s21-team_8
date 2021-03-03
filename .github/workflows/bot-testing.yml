@@ -66,6 +66,7 @@ jobs:
         file_name: .env
     - name: Test with distest
       run: |
+        cat .env
         ./startbot.sh
         ./test.sh
 
