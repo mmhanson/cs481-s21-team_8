@@ -2,6 +2,7 @@ FROM centos:7
 
 RUN yum -y install python3-devel
 RUN yum -y install gcc
+RUN apt-get -y update
 RUN apt-get -y install git
 RUN pip3 install -U python-dotenv
 RUN pip3 install requests
