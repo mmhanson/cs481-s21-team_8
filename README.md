@@ -39,7 +39,7 @@ Discord-Hero is a Discord bot framework intended to help create bots quicker and
 
 TODO:[Planning Lab](https://shanep.github.io/capstone/labs/planning/)
 
-- [Jane's Plan](planning/janedoe@u.boisestate.edu.md)
-- John's Plan
-- Bob's Plan
+- [Sean's Plan](planning/seanmullarkey@u.boisestate.edu.md)
+- [Ben's Plan](planning/bentonharper@u.boisestate.edu.md)
+- Forrest's Plan
 
