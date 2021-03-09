@@ -52,15 +52,20 @@ def search_spotify_for_track(track_name):
     return response
 
 
-track_response = search_spotify_for_track('Why I love the moon')
-first_result = track_response['tracks']['items'][0]
-first_result_artist = first_result['artists'][0]['name']
-
 def extract_spotify_url(track_reponse):
     spotify_url = track_reponse['external_urls']['spotify']
     return spotify_url
-    
 
 
+def audio_db_formatter(song_info):
+    audio_db_string = song_info.replace(" ", "_")
+    return audio_db_string
+
+
+track_response = search_spotify_for_track("Why I love the moon")
+first_result = track_response['tracks']['items'][0]
+first_result_artist = first_result['artists'][0]['name']
+
+print(first_result["name"])
 print(first_result_artist) # to get the first artist (likely the result we were looking for)
 print(extract_spotify_url(first_result)) # to get the spotify link to play the song
