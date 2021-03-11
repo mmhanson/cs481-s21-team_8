@@ -77,9 +77,10 @@ def get_track_from_spotify(track_name):
 
 
 
-def audio_db_formatter(song_info):
-    audio_db_string = song_info.replace(" ", "_")
-    return audio_db_string
+def audio_db_formatter(track_info, artist_info):
+    track_audio_db_string = track_info.replace(" ", "_")
+    artist_audio_db_string = artist_info.replace(" ", "_")
+    return track_audio_db_string, artist_audio_db_string
 
 
 
