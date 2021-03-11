@@ -5,14 +5,14 @@ import os
 from dotenv import load_dotenv
 import asyncio
 from api.spotify import get_track_from_spotify, audio_db_formatter
+from api import audiodb
 
 load_dotenv()
 client = discord.Client()
 
 bot_token = os.getenv("TECH_LAB_TOKEN")
 channel_id = os.getenv("CHANNEL_ID")
-# print(bot_token)
-# print(channel_id)
+audiodb_token = os.getenv("AUDIODB_TOKEN")
 
 client = commands.Bot(command_prefix="!", description="Music Bot", case_insensitive=True)
 tmp = "some change"
@@ -56,6 +56,8 @@ async def get_track(ctx, *args):
         await ctx.send(ret_string)
 
         audio_db_track, audio_db_artist = audio_db_formatter(track_name, track_artist)
+        user = f"{ctx.author.name}"
+        await ctx.send(embed=audiodb.searchSong(audio_db_track, audio_db_artist, user, audiodb_token))
         # call audio db with new args
     else:
         await ctx.send("Invalid options, we don't know how to search for what you wanted!")
@@ -87,23 +89,23 @@ async def get_track(ctx, *args):
 # @client.command(name="play")
 # async def song(ctx, track, artist):
 #    user = f"{ctx.author.name}"
-#    await ctx.send(embed=api.audiodb.searchSong(track, artist, user, audiodb_token))
+#    await ctx.send(embed=audiodb.searchSong(track, artist, user, audiodb_token))
 
 
 @client.command(name="songlist")
 async def songlist(ctx):
-    await ctx.send(embed=api.audiodb.printList())
+    await ctx.send(embed=audiodb.printList())
 
 
 @client.command(name="userlist")
 async def userlist(ctx):
-    await ctx.send(embed=api.audiodb.listUsers())
-    await ctx.send("Looks like " + api.audiodb.getLowestRatio() + " should keep their music to themselves :grimacing:")
+    await ctx.send(embed=audiodb.listUsers())
+    await ctx.send("Looks like " + audiodb.getLowestRatio() + " should keep their music to themselves :grimacing:")
 
 
 @client.command(name="desc")
 async def desc(ctx):
-    await ctx.send(api.audiodb.getDesc())
+    await ctx.send(audiodb.getDesc())
 
 
 client.run(bot_token)
