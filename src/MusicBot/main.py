@@ -84,4 +84,26 @@ async def get_track(ctx, *args):
 
 
 
+# @client.command(name="play")
+# async def song(ctx, track, artist):
+#    user = f"{ctx.author.name}"
+#    await ctx.send(embed=api.audiodb.searchSong(track, artist, user, audiodb_token))
+
+
+@client.command(name="songlist")
+async def songlist(ctx):
+    await ctx.send(embed=api.audiodb.printList())
+
+
+@client.command(name="userlist")
+async def userlist(ctx):
+    await ctx.send(embed=api.audiodb.listUsers())
+    await ctx.send("Looks like " + api.audiodb.getLowestRatio() + " should keep their music to themselves :grimacing:")
+
+
+@client.command(name="desc")
+async def desc(ctx):
+    await ctx.send(api.audiodb.getDesc())
+
+
 client.run(bot_token)
