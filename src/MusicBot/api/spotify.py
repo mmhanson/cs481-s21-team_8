@@ -44,6 +44,20 @@ def search_spotify_for_artist(artist_name):
     response = response.json()
     return response
 
+
+def get_track_name(track_response):
+    return track_response["name"]
+
+
+def get_track_artist(track_response):
+    return track_response['artists'][0]['name']
+
+
+def extract_spotify_url(track_reponse):
+    spotify_url = track_reponse['external_urls']['spotify']
+    return spotify_url
+
+
 def search_spotify_for_track(track_name):
     headers = get_headers()
     query_track_string = track_name.replace(" ", "%20")
@@ -52,20 +66,30 @@ def search_spotify_for_track(track_name):
     return response
 
 
-def extract_spotify_url(track_reponse):
-    spotify_url = track_reponse['external_urls']['spotify']
-    return spotify_url
+def get_track_from_spotify(track_name):
+    track = search_spotify_for_track(track_name)
+    first_track = track['tracks']['items'][0]
+    track_name = get_track_name(first_track)
+    track_artist = get_track_artist(first_track)
+    track_url = extract_spotify_url(first_track)
+    return track_name, track_artist, track_url
+    
 
 
-def audio_db_formatter(song_info):
-    audio_db_string = song_info.replace(" ", "_")
-    return audio_db_string
+
+def audio_db_formatter(track_info, artist_info):
+    track_audio_db_string = track_info.replace(" ", "_")
+    artist_audio_db_string = artist_info.replace(" ", "_")
+    return track_audio_db_string, artist_audio_db_string
 
 
-track_response = search_spotify_for_track("Why I love the moon")
-first_result = track_response['tracks']['items'][0]
-first_result_artist = first_result['artists'][0]['name']
 
-print(first_result["name"])
-print(first_result_artist) # to get the first artist (likely the result we were looking for)
-print(extract_spotify_url(first_result)) # to get the spotify link to play the song
+
+
+# track_response = search_spotify_for_track("Why I love the moon")
+# first_result = track_response['tracks']['items'][0]
+# first_result_artist = first_result['artists'][0]['name']
+
+# print(first_result["name"])
+# print(first_result_artist) # to get the first artist (likely the result we were looking for)
+# print(extract_spotify_url(first_result)) # to get the spotify link to play the song
