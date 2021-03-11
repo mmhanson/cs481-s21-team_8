@@ -143,7 +143,7 @@ def searchSong(track, artist, user, token):
         description=trackName + " by " + artistName,
         color=0xdb3b25,
     )
-    embed.set_thumbnail(url=getAlbumCover(idAlbum))
+    #embed.set_thumbnail(url=getAlbumCover(idAlbum))
 
     return embed
 
