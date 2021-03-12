@@ -72,7 +72,7 @@ async def get_track(ctx, *args):
         try:
             embed = audiodb.searchSong(audio_db_track, audio_db_artist, user, album_cover)
         except Exception:
-            split_track = re.split("[-(]", audio_db_track)
+            split_track = re.split("[-(]|FEAT.", audio_db_track)
             split_track[0] = split_track[0].strip("_")
             try:
                 embed = audiodb.searchSong(split_track[0], audio_db_artist, user, album_cover)
@@ -82,6 +82,7 @@ async def get_track(ctx, *args):
                     description="That song couldn't be found in our database, sorry!",
                     color=0xff1500,
                 )
+                audiodb.currentSong = embed
 
         await ctx.send(embed=embed)
     else:
