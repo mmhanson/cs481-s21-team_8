@@ -60,7 +60,6 @@ def get_album_cover(track_response):
     return track_response['album']['images'][0]['url']
 ######
 
-
 def extract_spotify_url(track_reponse):
     spotify_url = track_reponse['external_urls']['spotify']
     return spotify_url
@@ -84,6 +83,7 @@ def get_track_from_spotify(track_name):
     album_cover = get_album_cover(first_track)
     #####
     return track_name, track_artist, track_url, album_cover
+
 
 
 def audio_db_formatter(track_info, artist_info):

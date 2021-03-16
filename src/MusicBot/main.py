@@ -9,22 +9,20 @@ from api.spotify import get_track_from_spotify, audio_db_formatter
 from api import audiodb
 
 load_dotenv()
-#client = discord.Client()
+client = discord.Client()
 
 bot_token = os.getenv("TECH_LAB_TOKEN")
 channel_id = os.getenv("CHANNEL_ID")
-print(bot_token)
-print(channel_id)
 
-client = commands.Bot(command_prefix="!", description="Test Bot for Tech Lab", case_insensitive=True)
+client = commands.Bot(command_prefix="!", description="Music Bot", case_insensitive=True)
 tmp = "some change"
 
 
 @client.event
 async def on_ready():
-    print("Hello World")
+    print("Music Bot is ready!")
     channel = client.get_channel(int(channel_id))  # put id of channel from discord
-    await channel.send("Hello World")
+    await channel.send("Music Bot is ready!")
 
 @client.event
 async def on_message(message):
@@ -32,14 +30,6 @@ async def on_message(message):
         return
     sent = None
     
-    if message.content == "ping?":
-        await asyncio.sleep(1)
-        sent = await message.channel.send("pong!")
-
-    if message.content == "pong?":
-        await asyncio.sleep(1)
-        sent = await message.channel.send("ping!")
-        
     if message.content == "log out":
         await asyncio.sleep(1)
         sent = await message.channel.send("logging off...")
@@ -47,7 +37,6 @@ async def on_message(message):
         exit()
 
     await client.process_commands(message)
-
 
 @client.command(name="play")
 async def get_track(ctx, *args):
@@ -58,6 +47,7 @@ async def get_track(ctx, *args):
                 track_artist,
                 track_url,
                 album_cover
+
             ) = get_track_from_spotify(args[1])
         except Exception:
             return Response(
