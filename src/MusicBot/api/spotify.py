@@ -65,16 +65,35 @@ def search_spotify_for_track(track_name):
     response = response.json()
     return response
 
+def search_spotify_for_track_by_artist(track_name, track_artist):
+    headers = get_headers()
+    query_track_string = track_name.replace(" ", "%20")
+    query_artist_string = track_artist.replace(" ", "%20")
+    response = requests.get(BASE_URL + 'search?query=track:' + query_track_string + "artist:" + query_artist_string + '&type=track', headers=headers)
+    response = response.json()
+    return response
 
-def get_track_from_spotify(track_name):
-    track = search_spotify_for_track(track_name)
+def search_spotify_for_track_by_album(track_name, track_album):
+    headers = get_headers()
+    query_track_string = track_name.replace(" ", "%20")
+    query_artist_string = track_artist.replace(" ", "%20")
+    response = requests.get(BASE_URL + 'search?query=track:' + query_track_string + "album:" + query_artist_string + '&type=track', headers=headers)
+    response = response.json()
+    return response
+
+def get_track_from_spotify(track_name, track_album=None, track_artist=None):
+    if track_album is None and track_artist is None:
+        track = search_spotify_for_track(track_name)
+    else:
+        if track_album is not None:
+            track = search_spotify_for_track_by_album(track_name, track_album)
+        else:
+            track = search_spotify_for_track_by_artist(track_name, track_artist)     
     first_track = track['tracks']['items'][0]
     track_name = get_track_name(first_track)
     track_artist = get_track_artist(first_track)
     track_url = extract_spotify_url(first_track)
     return track_name, track_artist, track_url
-    
-
 
 
 def audio_db_formatter(track_info, artist_info):
