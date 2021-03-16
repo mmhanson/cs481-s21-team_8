@@ -1,11 +1,15 @@
 import requests
 import discord
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+audiodb_token = os.getenv("AUDIODB_TOKEN")
 maxSongs = 50
 numSongs = 0
 songList = [None] * maxSongs
 userList = []
-currentDesc = ""
+currentSong = discord.Embed()
 
 
 class trackInfo():
@@ -21,6 +25,17 @@ class userInfo():
         self.name = name
         self.ratio = ratio
         self.songsReq = songsReq
+
+
+def getQuip():
+    if rankFunc(userList[0]) < .5:
+        return "I'm not mad, just disappointed :neutral_face:"
+    elif rankFunc(userList[len(userList)-1]) > .8:
+        return "Do you guys listen to anything not in the top 100? :rolling_eyes:"
+    elif rankFunc(userList[0]) > .95:
+        return "All hail " + getHighestRatio() + "! :crown:"
+    else:
+        return "Looks like " + getLowestRatio() + " should keep their music to themselves :grimacing:"
 
 
 def addSong(title, artist, album, ratio):
@@ -83,18 +98,18 @@ def getHighestRatio():
     return userList[0].name
 
 
-def getDesc():
-    return currentDesc
+def getCurrSong():
+    return currentSong
 
 
-def searchSong(track, artist, user, token):
-    global currentDesc
+def searchSong(track, artist, user, coverurl):
+    global currentSong
     url = "https://theaudiodb.p.rapidapi.com/searchtrack.php"
 
     querystring = {"s": artist, "t": track}
 
     headers = {
-        'x-rapidapi-key': token,
+        'x-rapidapi-key': audiodb_token,
         'x-rapidapi-host': "theaudiodb.p.rapidapi.com"
         }
 
@@ -141,25 +156,8 @@ def searchSong(track, artist, user, token):
     embed = discord.Embed(
         title="Now Playing!",
         description=trackName + " by " + artistName,
-        color=0xdb3b25,
+        color=0xe6ba39,
     )
-    #embed.set_thumbnail(url=getAlbumCover(idAlbum))
-
+    embed.set_thumbnail(url=coverurl)
+    currentSong = embed
     return embed
-
-
-def getAlbumCover(albumId):
-    url = "https://theaudiodb.p.rapidapi.com/album.php"
-
-    querystring = {"m": albumId}
-
-    headers = {
-        'x-rapidapi-key': "7eff181196msh647e7836d36277bp1bd94ejsn70666bc4d59d",
-        'x-rapidapi-host': "theaudiodb.p.rapidapi.com"
-    }
-
-    response = requests.request("GET", url, headers=headers, params=querystring)
-
-    jsonResponse = response.json()
-
-    return jsonResponse['album'][0]['strAlbumThumb']

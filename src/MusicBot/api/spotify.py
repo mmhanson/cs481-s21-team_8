@@ -11,6 +11,7 @@ BASE_URL = 'https://api.spotify.com/v1/'
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 track_id = '6y0igZArWVi6Iz0rj35c1Y'
 
+
 def get_headers():
     auth_response = requests.post(AUTH_URL, {
         'grant_type': 'client_credentials',
@@ -25,7 +26,7 @@ def get_headers():
     access_token = auth_response_data['access_token']
 
     headers = {
-    'Authorization': 'Bearer {token}'.format(token=access_token)
+        'Authorization': 'Bearer {token}'.format(token=access_token)
     }
 
     return headers
@@ -36,6 +37,7 @@ def get_spotify_track_example(track_id):
     response = requests.get(BASE_URL + 'audio-features/' + track_id, headers=headers)
     response = response.json()
     return response
+
 
 def search_spotify_for_artist(artist_name):
     headers = get_headers()
@@ -52,6 +54,11 @@ def get_track_name(track_response):
 def get_track_artist(track_response):
     return track_response['artists'][0]['name']
 
+
+######
+def get_album_cover(track_response):
+    return track_response['album']['images'][0]['url']
+######
 
 def extract_spotify_url(track_reponse):
     spotify_url = track_reponse['external_urls']['spotify']
@@ -72,8 +79,10 @@ def get_track_from_spotify(track_name):
     track_name = get_track_name(first_track)
     track_artist = get_track_artist(first_track)
     track_url = extract_spotify_url(first_track)
-    return track_name, track_artist, track_url
-    
+    #####
+    album_cover = get_album_cover(first_track)
+    #####
+    return track_name, track_artist, track_url, album_cover
 
 
 
@@ -81,10 +90,6 @@ def audio_db_formatter(track_info, artist_info):
     track_audio_db_string = track_info.replace(" ", "_")
     artist_audio_db_string = artist_info.replace(" ", "_")
     return track_audio_db_string, artist_audio_db_string
-
-
-
-
 
 # track_response = search_spotify_for_track("Why I love the moon")
 # first_result = track_response['tracks']['items'][0]
