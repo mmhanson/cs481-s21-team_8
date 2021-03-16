@@ -161,20 +161,3 @@ def searchSong(track, artist, user, coverurl):
     embed.set_thumbnail(url=coverurl)
     currentSong = embed
     return embed
-
-
-def getAlbumCover(albumId):
-    url = "https://theaudiodb.p.rapidapi.com/album.php"
-
-    querystring = {"m": albumId}
-
-    headers = {
-        'x-rapidapi-key': "7eff181196msh647e7836d36277bp1bd94ejsn70666bc4d59d",
-        'x-rapidapi-host': "theaudiodb.p.rapidapi.com"
-    }
-
-    response = requests.request("GET", url, headers=headers, params=querystring)
-
-    jsonResponse = response.json()
-
-    return jsonResponse['album'][0]['strAlbumThumb']
