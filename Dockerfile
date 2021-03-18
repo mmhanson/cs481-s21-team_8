@@ -10,5 +10,4 @@ COPY ./ .
 
 COPY ./.env .
 
-
-CMD python3 src/main.py
+CMD python3 src/MusicBot/main.py
