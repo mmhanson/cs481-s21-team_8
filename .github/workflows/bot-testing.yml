@@ -5,11 +5,11 @@ name: Bot Builder/Tester
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, development ]
     paths-ignore:
     - 'journals/**'
   pull_request:
-    branches: [ master ]
+    branches: [ master, development ]
 
 jobs:
   build:
