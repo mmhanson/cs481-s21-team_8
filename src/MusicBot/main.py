@@ -41,19 +41,41 @@ async def on_message(message):
 @client.command(name="play")
 async def get_track(ctx, *args):
     if args[0] == "song":
-        try:
-            (
-                track_name,
-                track_artist,
-                track_url,
-                album_cover
+        if args[2] is not None:
+            if args[2] == "by":
+                try:
+                    (
+                        track_name,
+                        track_artist,
+                        track_url,
+                        album_cover
+                    ) = get_track_from_spotify(args[1], args[3], "artist")
+                except Exception:                   
+                    await ctx.send("400 Error!")
+            elif args[2] == "from":
+                try:
+                    (
+                        track_name,
+                        track_artist,
+                        track_url,
+                        album_cover
+                    ) = get_track_from_spotify(args[1], args[3], "album")
+                except Exception:
+                    await ctx.send("400 Error!")
+            else:
+                await ctx.send("invalid arguments! Please try again!")
+        else:
+            try:
+                (
+                    track_name,
+                    track_artist,
+                    track_url,
+                    album_cover
 
-            ) = get_track_from_spotify(args[1])
-        except Exception:
-            return Response(
-                "Failed to get track information",
-                status=HTTP_400_BAD_REQUEST,
-            )
+                ) = get_track_from_spotify(args[1])
+            except Exception:
+                await ctx.send("400 Error!")
+
         ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
         await ctx.send(ret_string)
 
