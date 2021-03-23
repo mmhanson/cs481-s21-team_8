@@ -50,9 +50,10 @@ async def get_track(ctx, *args):
 
             ) = get_track_from_spotify(args[1])
         except Exception:
-            return Response(
-                "Failed to get track information",
-                status=HTTP_400_BAD_REQUEST,
+            embed = discord.Embed(
+                title="Uh-oh :astonished:",
+                description="Failed to get track information",
+                color=0xff1500,
             )
         ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
         await ctx.send(ret_string)
