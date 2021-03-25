@@ -41,13 +41,42 @@ async def on_message(message):
 @client.command(name="play")
 async def get_track(ctx, *args):
     if args[0] == "song":
-        try:
-            (
-                track_name,
-                track_artist,
-                track_url,
-                album_cover
+        if args[2] is not None:
+            if args[2] == "by":
+                try:
+                    (
+                        track_name,
+                        track_artist,
+                        track_url,
+                        album_cover
+                    ) = get_track_from_spotify(args[1], args[3], "artist")
+                except Exception:                   
+                    await ctx.send("400 Error!")
+            elif args[2] == "from":
+                try:
+                    (
+                        track_name,
+                        track_artist,
+                        track_url,
+                        album_cover
+                    ) = get_track_from_spotify(args[1], args[3], "album")
+                except Exception:
+                    await ctx.send("400 Error!")
+            else:
+                await ctx.send("invalid arguments! Please try again!")
+        else:
+            try:
+                (
+                    track_name,
+                    track_artist,
+                    track_url,
+                    album_cover
 
+                ) = get_track_from_spotify(args[1])
+            except Exception:
+                await ctx.send("400 Error!")
+
+<<<<<<< HEAD
             ) = get_track_from_spotify(args[1])
         except Exception:
             embed = discord.Embed(
@@ -55,6 +84,8 @@ async def get_track(ctx, *args):
                 description="Failed to get track information",
                 color=0xff1500,
             )
+=======
+>>>>>>> 9a94ad0b0fecdb75fffccb6ddb0a9f39c077b2fe
         ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
         await ctx.send(ret_string)
 
