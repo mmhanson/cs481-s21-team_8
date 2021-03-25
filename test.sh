@@ -13,13 +13,3 @@ python3 ./tests/exampleTest/example_target.py $TECH_LAB_TOKEN &
 sleep 5s
 
 python3 ./tests/exampleTest/example_tester.py $TECH_LAB_BOT_ID $TESTER_BOT_TOKEN -c $CHANNEL_ID -r all 
-
-#pytest first code
-
-def func():
-    return 1;
-
-
-def test_answer():
-    assert func() == 1
-
