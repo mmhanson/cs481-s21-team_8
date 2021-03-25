@@ -1,8 +1,8 @@
 # Discord Music Bot
 
-##Abstract:
+## Abstract:
 
-##Members:
+## Members:
  - Sean Mullarkey
  - Forrest Burt
  - Ben Harper
