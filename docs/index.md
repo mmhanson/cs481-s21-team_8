@@ -14,3 +14,7 @@ We have considered adding push notifications for mobile devices to the bot as we
  - Sean Mullarkey
  - Forrest Burt
  - Ben Harper
+
+## Project Demo:
+
+Coming soon
