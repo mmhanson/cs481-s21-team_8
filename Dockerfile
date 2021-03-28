@@ -8,6 +8,4 @@ RUN pip3 install -r requirements.txt
 
 COPY ./ .
 
-COPY ./.env .
-
 CMD python3 src/MusicBot/main.py
