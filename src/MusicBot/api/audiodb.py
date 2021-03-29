@@ -28,14 +28,17 @@ class userInfo():
 
 
 def getQuip():
-    if rankFunc(userList[0]) < .5:
-        return "I'm not mad, just disappointed :neutral_face:"
-    elif rankFunc(userList[len(userList)-1]) > .8:
-        return "Do you guys listen to anything not in the top 100? :rolling_eyes:"
-    elif rankFunc(userList[0]) > .95:
-        return "All hail " + getHighestRatio() + "! :crown:"
+    if len(userList) > 0:
+        if rankFunc(userList[0]) < .5:
+            return "I'm not mad, just disappointed :neutral_face:"
+        elif rankFunc(userList[len(userList)-1]) > .8:
+            return "Do you guys listen to anything not in the top 100? :rolling_eyes:"
+        elif rankFunc(userList[0]) > .95:
+            return "All hail " + getHighestRatio() + "! :crown:"
+        else:
+            return "Looks like " + getLowestRatio() + " should keep their music to themselves :grimacing:"
     else:
-        return "Looks like " + getLowestRatio() + " should keep their music to themselves :grimacing:"
+        return "There are no current users! Play a song to add your name to the Leaderboard!"
 
 
 def addSong(title, artist, album, ratio):

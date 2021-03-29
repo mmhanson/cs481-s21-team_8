@@ -47,10 +47,10 @@ async def on_message(message):
     if message.content.lower() == "musicbot now playing":
         await currsong(message)
 
-    if message.content.lower() == "MusicBot user list":
+    if message.content.lower() == "musicbot user list":
         await userlist(message)
 
-    if message.content.lower() == "MusicBot song list":
+    if message.content.lower() == "musicbot song list":
         await songlist(message)
 
     await client.process_commands(message)
@@ -71,10 +71,11 @@ async def get_track(args_list, author, message):
         track_artist = "Bon Jovi"
         track_url = "https://open.spotify.com/track/37ZJ0p5Jm13JPevGcx4SkF"
         album_cover = "https://community.mp3tag.de/uploads/default/original/2X/a/acf3edeb055e7b77114f9e393d1edeeda37e50c9.png"
-    else:
-        if args_list[1] is not None:
-            if args_list[1] == "by":
-                await message.channel.send("Searching Song By Artist...")
+    
+    if args_list[1] is not None:
+        if args_list[1] == "by":
+            await message.channel.send("Searching Song By Artist...")
+            if not test_mode:
                 try:
                     (
                         track_name,
@@ -85,8 +86,9 @@ async def get_track(args_list, author, message):
                 except Exception:                   
                     await message.channel.send("400 Error!")
                     return
-            elif args_list[1] == "from":
-                await message.channel.send("Searching Song By Album...")
+        elif args_list[1] == "from":
+            await message.channel.send("Searching Song By Album...")
+            if not test_mode:
                 try:
                     (
                         track_name,
@@ -97,10 +99,12 @@ async def get_track(args_list, author, message):
                 except Exception:
                     await message.channel.send("400 Error!")
                     return
-            else:
-                await message.channel.send("invalid arguments! Please try again!")
-                return
         else:
+            await message.channel.send("invalid arguments! Please try again!")
+            return
+    else:
+        if not test_mode:
+            await message.channel.send("Searching Song By Best Match...")
             try:
                 (
                     track_name,
@@ -112,9 +116,9 @@ async def get_track(args_list, author, message):
             except Exception:
                 await message.channel.send("400 Error!")
                 return
-
-    ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
-    await message.channel.send(ret_string)
+    
+    # ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
+    # await message.channel.send(ret_string)
 
     audio_db_track, audio_db_artist = audio_db_formatter(track_name, track_artist)
     if test_mode:
@@ -139,8 +143,13 @@ async def get_track(args_list, author, message):
                     color=0xff1500,
                 )
                 audiodb.currentSong = embed
+    
+    # await message.channel.send(embed=embed)
+    # I want to test the embedded stuff in the future. 
+    # This is important but I'm not quite sure how to do it yet
 
-    await message.channel.send(embed=embed)
+    ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
+    await message.channel.send(ret_string)
 
 
 async def songlist(message):
