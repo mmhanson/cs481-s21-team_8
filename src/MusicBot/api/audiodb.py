@@ -117,7 +117,7 @@ def searchSong(track, artist, user, coverurl):
 
     jsonResponse = response.json()
 
-    print(response.text)
+    # print(response.text)
 
     artistName = jsonResponse['track'][0]['strArtist']
     #print(artistName)

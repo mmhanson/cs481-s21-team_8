@@ -88,9 +88,6 @@ def search_spotify_for_track_by_album(track_name, track_album):
     return response
 
 def get_track_from_spotify(track_name, track_specifier, track_specify_type):
-    print(track_name)
-    print(track_specifier)
-    print(track_specify_type)
     if track_specifier is None:
         track = search_spotify_for_track(track_name)
     else:
