@@ -60,9 +60,12 @@ async def get_track(args_list, author, message):
     user = f"{author}"
     test_mode = False
     if len(args_list) > 3:
-        if "test" in args_list[3].lower():
+        if "--test" in args_list[3].lower():
             test_mode = True
             await message.channel.send("Test Mode Active!")
+        else:
+            await message.channel.send("Too many arguments! Try again!")
+            return
 
     if test_mode: 
         # currently this defaults to livin on a prayer for test mode. 
