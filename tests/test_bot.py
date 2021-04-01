@@ -24,9 +24,14 @@ async def test_play_song_by_artist_response(interface):
 #test that the info within the embed is what it should be
 @test_collector()
 async def test_song_list_info(interface):
-    embed = Embed(title="Recently Played!", description="**Song:** Livin' on a Prayer **Artist:** Bon Jovi **Album:** Slippery When Wet **Like Ratio:** 0.98 **Played By:** CS 481 Tester Bot\n\n")
+    desc = "**Song:** Livin' on a Prayer **Artist:** Bon Jovi **Album:** Slippery When Wet **Like Ratio:** 0.98 **Played By:** CS 481 Tester Bot"
+    embed = Embed(
+        title="Recently Played!",
+        description=desc,
+        color=0x1DB954,
+    )
     await interface.assert_reply_embed_equals(
-        'MusicBot song list', embed, attributes_to_check=["description"]
+        'MusicBot song list', embed
     )
     await asyncio.sleep(3)
     
