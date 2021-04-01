@@ -13,11 +13,12 @@ currentSong = discord.Embed()
 
 
 class trackInfo():
-    def __init__(self, title, artist, album, ratio):
+    def __init__(self, title, artist, album, ratio, user):
         self.title = title
         self.artist = artist
         self.album = album
         self.ratio = ratio
+        self.user = user
 
 
 class userInfo():
@@ -41,9 +42,9 @@ def getQuip():
         return "There are no current users! Play a song to add your name to the Leaderboard!"
 
 
-def addSong(title, artist, album, ratio):
+def addSong(title, artist, album, ratio, user):
     global songList, numSongs, maxSongs
-    track = trackInfo(title, artist, album, ratio)
+    track = trackInfo(title, artist, album, ratio, user)
     songList[numSongs] = track
     numSongs += 1
     numSongs = numSongs % maxSongs
@@ -53,10 +54,10 @@ def printList():
     songs = ""
     for i in range(numSongs, len(songList)):
         if songList[i] is not None:
-            songs = songs + ("**Song:** " + songList[i].title + " **Artist:** " + songList[i].artist + " **Album:** " + songList[i].album + " **Like Ratio:** " + str(songList[i].ratio) + "\n\n")
+            songs = songs + ("**Song:** " + songList[i].title + " **Artist:** " + songList[i].artist + " **Album:** " + songList[i].album + " **Like Ratio:** " + str(songList[i].ratio) + " **Played By:** " + songList[i].user + "\n\n")
     for i in range(0, numSongs):
         if songList[i] is not None:
-            songs = songs + ("**Song:** " + songList[i].title + " **Artist:** " + songList[i].artist + " **Album:** " + songList[i].album + " **Like Ratio:** " + str(songList[i].ratio) + "\n\n")
+            songs = songs + ("**Song:** " + songList[i].title + " **Artist:** " + songList[i].artist + " **Album:** " + songList[i].album + " **Like Ratio:** " + str(songList[i].ratio) + " **Played By:** " + songList[i].user + "\n\n")
     embed = discord.Embed(
         title="Recently Played!",
         description=songs,
@@ -151,7 +152,7 @@ def searchSong(track, artist, user, coverurl):
     else:
         likeRatio = "N/A"
 
-    addSong(trackName, artistName, albumName, likeRatio)
+    addSong(trackName, artistName, albumName, likeRatio, user)
 
     if likeRatio != "N/A":
         addUser(user, likeRatio)
