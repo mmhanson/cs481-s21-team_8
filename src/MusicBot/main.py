@@ -73,10 +73,13 @@ async def get_track(args_list, author, message):
         # It's alright for now but maybe we can come up with a more dynamic test in the future
         track_name = "Livin' on a Prayer"
         track_artist = "Bon Jovi"
+        track_album = "Slippery When Wet"
+        track_ratio = 0.98
         track_url = "https://open.spotify.com/track/37ZJ0p5Jm13JPevGcx4SkF"
         album_cover = "https://community.mp3tag.de/uploads/default/original/2X/a/acf3edeb055e7b77114f9e393d1edeeda37e50c9.png"
-    
-    if args_list[1] is not None:
+        audiodb.addSong(track_name, track_artist, track_album, track_ratio, user)
+
+    if len(args_list) > 1:
         if args_list[1] == "by":
             await message.channel.send("Searching Song By Artist...")
             if not test_mode:
@@ -116,7 +119,7 @@ async def get_track(args_list, author, message):
                     track_url,
                     album_cover
 
-                ) = get_track_from_spotify(args_list[1])
+                ) = get_track_from_spotify(args_list[0], None, None)
             except Exception:
                 await message.channel.send("400 Error!")
                 return

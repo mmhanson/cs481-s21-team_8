@@ -20,7 +20,20 @@ async def test_play_song_by_artist_response(interface):
     response_message = message.channel.last_message
     await interface.assert_message_contains(response_message, f"Now playing: {test_song}")
     await interface.assert_message_contains(response_message, f"By Artist: {test_artist}")
-    
+
+#test that the info within the embed is what it should be
+@test_collector()
+async def test_song_list_info(interface):
+    desc = "**Song:** Livin' on a Prayer **Artist:** Bon Jovi **Album:** Slippery When Wet **Like Ratio:** 0.98 **Played By:** CS 481 Tester Bot"
+    embed = Embed(
+        title="Recently Played!",
+        description=desc,
+        color=0x1DB954,
+    )
+    await interface.assert_reply_embed_equals(
+        'MusicBot song list', embed
+    )
+    await asyncio.sleep(3)
     
 # test default song by album
 @test_collector()
@@ -29,7 +42,7 @@ async def test_play_song_by_album_response(interface):
     test_artist = "Bon Jovi"  
     test_album = "Slippery When Wet"
     message = await interface.send_message(
-        f'MusicBot Play "{test_song}" from "{test_artist}" --test' 
+        f'MusicBot Play "{test_song}" from "{test_album}" --test'
     )
     await asyncio.sleep(3)
     response_message = message.channel.last_message
