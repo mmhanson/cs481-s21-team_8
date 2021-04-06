@@ -32,12 +32,11 @@ async def on_message(message):
         return
     sent = None
     
-    if message.content.lower() == "log out":
+    if message.content.lower() == "--log_out":
         await asyncio.sleep(1)
         sent = await message.channel.send("logging off...")
-        await asyncio.sleep(3)
-        await client.close()
-        exit()
+        await client.logout()
+        # exit()
 
     if message.content.startswith("MusicBot Play"):
         content = message.content
