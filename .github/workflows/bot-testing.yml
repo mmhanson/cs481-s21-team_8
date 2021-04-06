@@ -35,7 +35,43 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-  
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install flake8 pytest
+        python3 -m pip install discord.py python-dotenv requests
+        python3 -m pip install git+https://github.com/sean-keisuke/distest.git
+        
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_DEBUG: false
+        envkey_CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        envkey_TECH_LAB_BOT_ID: ${{ secrets.TECH_LAB_BOT_ID }}
+        envkey_TECH_LAB_TOKEN: ${{ secrets.TECH_LAB_TOKEN }}
+        envkey_TESTER_BOT_TOKEN: ${{ secrets.TESTER_BOT_TOKEN }}
+        file_name: .env
+    - name: Test with distest
+      run: |
+        ./test.sh
+        
+  restart_when_failed:
+    name: Restarts the scheduled run when it failed
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'test' && failure()
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
