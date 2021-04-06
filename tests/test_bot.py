@@ -64,6 +64,12 @@ async def test_get_song_list(interface):
     )
     await asyncio.sleep(3)
 
+# log out after tests
+@test_collector()
+async def test_log_out(interface):
+    message = await interface.send_message("log out")
+    await asyncio.sleep(1)
+    await interface.assert_reply_contains(message, "logging off...")
 
 if __name__ == "__main__":
     run_dtest_bot(sys.argv, test_collector)
