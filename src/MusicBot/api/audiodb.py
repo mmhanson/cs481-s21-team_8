@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 audiodb_token = os.getenv("AUDIODB_TOKEN")
-maxSongs = 50
+maxSongs = 15
 numSongs = 0
 songList = [None] * maxSongs
 userList = []
