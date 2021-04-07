@@ -77,6 +77,19 @@ async def test_get_song_list(interface):
     )
     await asyncio.sleep(3)
 
+#test that the ratios are correct and users are in correct order
+@test_collector()
+async def test_user_list_rankings(interface):
+    desc = "**Name:** Sarah **Ratio:** 0.95\n\n**Name:** Bill **Ratio:** 0.5"
+    embed = Embed(
+        title="Music Taste Leaderboard!",
+        description=desc,
+        color=0x7289da,
+    )
+    await interface.assert_reply_embed_equals(
+        'MusicBot user list --ranktest', embed
+    )
+    await asyncio.sleep(3)
 
 if __name__ == "__main__":
     run_dtest_bot(sys.argv, test_collector)
