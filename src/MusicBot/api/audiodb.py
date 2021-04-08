@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 audiodb_token = os.getenv("AUDIODB_TOKEN")
-maxSongs = 50
+maxSongs = 15
 numSongs = 0
 songList = [None] * maxSongs
 userList = []
@@ -65,6 +65,9 @@ def printList():
     )
     return embed
 
+def clearSongs():
+    for i in range(0, len(songList)):
+        songList[i] = None
 
 def addUser(username, ratio):
     global userList
@@ -85,7 +88,8 @@ def listUsers():
     users = ""
     userList.sort(reverse=True, key=rankFunc)
     for i in range(0, len(userList)):
-        users = users + ("**Name:** " + userList[i].name + " **Ratio:** " + str(round(float(userList[i].ratio)/float(userList[i].songsReq), 2)) + "\n\n")
+        if userList[i] is not None:
+            users = users + ("**Name:** " + userList[i].name + " **Ratio:** " + str(round(float(userList[i].ratio)/float(userList[i].songsReq), 2)) + "\n\n")
     embed = discord.Embed(
         title="Music Taste Leaderboard!",
         description=users,
@@ -93,6 +97,9 @@ def listUsers():
     )
     return embed
 
+def clearUsers():
+    global userList
+    userList = []
 
 def getLowestRatio():
     return userList[len(userList)-1].name
