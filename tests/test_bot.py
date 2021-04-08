@@ -87,7 +87,7 @@ async def test_user_list_rankings(interface):
         color=0x7289da,
     )
     await interface.assert_reply_embed_equals(
-        'MusicBot user list --ranktest', embed
+        '!mb user list --ranktest', embed
     )
     await asyncio.sleep(3)
 
