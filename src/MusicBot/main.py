@@ -31,12 +31,12 @@ async def on_message(message):
     if message.author.id is client.user.id:
         return
     sent = None
-
-    if message.content.lower() == "log out":
+  
+    if message.content.lower() == "--log_out":
         await asyncio.sleep(1)
         sent = await message.channel.send("logging off...")
-        await client.close()
-        exit()
+        await client.logout()
+        # exit()
 
     if message.content.startswith("MusicBot Play"):
         # if message.content.startswith("MusicBot Play"):
