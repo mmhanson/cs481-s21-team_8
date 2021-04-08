@@ -14,7 +14,7 @@ async def test_play_song_by_artist_response(interface):
     test_song = "Livin' on a Prayer"
     test_artist = "Bon Jovi"  
     message = await interface.send_message(
-        f'MusicBot Play "{test_song}" by "{test_artist}" --test' 
+        f'!mb Play "{test_song}" by "{test_artist}" --test' 
     )
     await asyncio.sleep(3)
     response_message = message.channel.last_message
@@ -31,7 +31,7 @@ async def test_song_list_info(interface):
         color=0x1DB954,
     )
     await interface.assert_reply_embed_equals(
-        'MusicBot song list', embed
+        '!mb song list', embed
     )
     await asyncio.sleep(3)
     
@@ -42,7 +42,7 @@ async def test_play_song_by_album_response(interface):
     test_artist = "Bon Jovi"  
     test_album = "Slippery When Wet"
     message = await interface.send_message(
-        f'MusicBot Play "{test_song}" from "{test_album}" --test'
+        f'!mb Play "{test_song}" from "{test_album}" --test'
     )
     await asyncio.sleep(3)
     response_message = message.channel.last_message
@@ -53,7 +53,7 @@ async def test_play_song_by_album_response(interface):
 @test_collector()
 async def test_get_now_playing(interface): # this doesn't show if we are in test mode currently
     message = await interface.send_message(
-        f'MusicBot now playing' 
+        f'!mb now playing' 
     )
     await asyncio.sleep(3)
 
@@ -63,7 +63,7 @@ async def test_get_user_list(interface):
     embed = Embed(title="Music Taste Leaderboard!")
     # await interface.get_delayed_reply(5, interface.assert_reply_embed_equals, embed, attributes_to_check=["title"])
     await interface.assert_reply_embed_equals(
-        'MusicBot user list' , embed, attributes_to_check=["title"]
+        '!mb user list' , embed, attributes_to_check=["title"]
     )
     await asyncio.sleep(3)
 
@@ -73,7 +73,7 @@ async def test_get_song_list(interface):
     embed = Embed(title="Recently Played!")
     # await interface.get_delayed_reply(5, interface.assert_reply_embed_equals, embed, attributes_to_check=["title"])
     await interface.assert_reply_embed_equals(
-        'MusicBot song list' , embed, attributes_to_check=["title"]
+        '!mb song list' , embed, attributes_to_check=["title"]
     )
     await asyncio.sleep(3)
 
@@ -87,7 +87,7 @@ async def test_user_list_rankings(interface):
         color=0x7289da,
     )
     await interface.assert_reply_embed_equals(
-        'MusicBot user list --ranktest', embed
+        '!mb user list --ranktest', embed
     )
     await asyncio.sleep(3)
 

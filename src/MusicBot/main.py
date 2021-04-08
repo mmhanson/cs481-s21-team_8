@@ -31,40 +31,40 @@ async def on_message(message):
     if message.author.id is client.user.id:
         return
     sent = None
-  
-    if message.content.lower() == "--log_out":
+
+    content = message.content
+    if content != None:
+        commands_token = shlex.split(content)
+
+    mb_commands = ' '.join(commands_token[1:])
+    
+    if content.lower() == "--log_out":
         await asyncio.sleep(1)
         sent = await message.channel.send("logging off...")
         await client.logout()
         # exit()
+        
+    if len(commands_token) > 0 and commands_token[0] == "!mb":
+        if commands_token[1].lower() == "play":
+            args_list = commands_token[2:]
+            await get_track(args_list, message.author.name, message)
 
-    if message.content.startswith("MusicBot Play"):
-        # if message.content.startswith("MusicBot Play"):
-        content = message.content
-        args_list = shlex.split(content)
-        args_list = args_list[2:]
-        # args_list = args_list[2:]
-        await get_track(args_list, message.author.name, message)
+        if "now playing" in mb_commands.lower():
+            await currsong(message)
 
-    if message.content.lower() == "musicbot now playing":
-        await currsong(message)
+        if "user list" in mb_commands.lower():
+            if "--clear" in mb_commands.lower():
+                await userlistclear(message)
+            elif "--ranktest" in mb_commands.lower():
+                await userlist_rankingtest(message)
+            else:
+                await userlist(message)
 
-    if message.content.lower() == "musicbot user list":
-        await userlist(message)
-
-    if message.content.lower() == "musicbot user list --clear":
-        await userlistclear(message)
-
-    if message.content.lower() == "musicbot user list --ranktest":
-        await userlist_rankingtest(message)
-
-    if message.content.lower() == "musicbot song list":
-        await songlist(message)
-
-    if message.content.lower() == "musicbot song list --clear":
-        await songlistclear(message)
-
-    await client.process_commands(message)
+        if "song list" in mb_commands.lower():
+            if "--clear" in mb_commands.lower():
+                await songlistclear(message)
+            else:
+                await songlist(message)
 
 
 async def get_track(args_list, author, message):
@@ -174,7 +174,7 @@ async def songlist(message):
 
 
 async def songlistclear(message):
-    await audiodb.clearSongs()
+    audiodb.clearSongs()
 
 
 async def userlist(message):
@@ -183,7 +183,7 @@ async def userlist(message):
 
 
 async def userlistclear(message):
-    await audiodb.clearUsers()
+    audiodb.clearUsers()
 
 
 async def userlist_rankingtest(message):
