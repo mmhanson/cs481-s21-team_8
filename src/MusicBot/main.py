@@ -31,7 +31,7 @@ async def on_message(message):
     if message.author.id is client.user.id:
         return
     sent = None
-    
+  
     if message.content.lower() == "--log_out":
         await asyncio.sleep(1)
         sent = await message.channel.send("logging off...")
@@ -39,9 +39,11 @@ async def on_message(message):
         # exit()
 
     if message.content.startswith("MusicBot Play"):
+        # if message.content.startswith("MusicBot Play"):
         content = message.content
         args_list = shlex.split(content)
         args_list = args_list[2:]
+        # args_list = args_list[2:]
         await get_track(args_list, message.author.name, message)
 
     if message.content.lower() == "musicbot now playing":
@@ -50,8 +52,17 @@ async def on_message(message):
     if message.content.lower() == "musicbot user list":
         await userlist(message)
 
+    if message.content.lower() == "musicbot user list --clear":
+        await userlistclear(message)
+
+    if message.content.lower() == "musicbot user list --ranktest":
+        await userlist_rankingtest(message)
+
     if message.content.lower() == "musicbot song list":
         await songlist(message)
+
+    if message.content.lower() == "musicbot song list --clear":
+        await songlistclear(message)
 
     await client.process_commands(message)
 
@@ -67,8 +78,8 @@ async def get_track(args_list, author, message):
             await message.channel.send("Too many arguments! Try again!")
             return
 
-    if test_mode: 
-        # currently this defaults to livin on a prayer for test mode. 
+    if test_mode:
+        # currently this defaults to livin on a prayer for test mode.
         # It's alright for now but maybe we can come up with a more dynamic test in the future
         track_name = "Livin' on a Prayer"
         track_artist = "Bon Jovi"
@@ -89,7 +100,7 @@ async def get_track(args_list, author, message):
                         track_url,
                         album_cover
                     ) = get_track_from_spotify(args_list[0], args_list[2], "artist")
-                except Exception:                   
+                except Exception:
                     await message.channel.send("400 Error!")
                     return
         elif args_list[1] == "from":
@@ -122,7 +133,7 @@ async def get_track(args_list, author, message):
             except Exception:
                 await message.channel.send("400 Error!")
                 return
-    
+
     # ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
     # await message.channel.send(ret_string)
 
@@ -149,9 +160,9 @@ async def get_track(args_list, author, message):
                     color=0xff1500,
                 )
                 audiodb.currentSong = embed
-    
+
     # await message.channel.send(embed=embed)
-    # I want to test the embedded stuff in the future. 
+    # I want to test the embedded stuff in the future.
     # This is important but I'm not quite sure how to do it yet
 
     ret_string = "Now playing: " + str(track_name) + "\nBy Artist: " + str(track_artist) + "\n" + str(track_url)
@@ -162,7 +173,25 @@ async def songlist(message):
     await message.channel.send(embed=audiodb.printList())
 
 
+async def songlistclear(message):
+    await audiodb.clearSongs()
+
+
 async def userlist(message):
+    await message.channel.send(embed=audiodb.listUsers())
+    await message.channel.send(audiodb.getQuip())
+
+
+async def userlistclear(message):
+    await audiodb.clearUsers()
+
+
+async def userlist_rankingtest(message):
+    audiodb.clearUsers()
+    audiodb.addUser("Bill", .90)
+    audiodb.addUser("Bill", .50)
+    audiodb.addUser("Bill", .10)
+    audiodb.addUser("Sarah", .95)
     await message.channel.send(embed=audiodb.listUsers())
     await message.channel.send(audiodb.getQuip())
 
@@ -173,5 +202,6 @@ async def userlist(message):
 
 async def currsong(message):
     await message.channel.send(embed=audiodb.getCurrSong())
+
 
 client.run(bot_token)
