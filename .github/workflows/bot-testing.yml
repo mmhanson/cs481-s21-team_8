@@ -71,7 +71,7 @@ jobs:
     name: Restarts the scheduled run when it failed
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.event_name == 'test' && failure()
+    if: github.jobs == 'test' && failure()
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
